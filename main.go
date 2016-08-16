@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	"github.com/fer2d2/sievert/cmd"
@@ -12,7 +13,7 @@ func main() {
 	fmt.Println(stubs.AppLogoTpl)
 
 	if err := cmd.RootCmd.Execute(); err != nil {
-		fmt.Println(err)
+		log.Fatal(err)
 		os.Exit(-1)
 	}
 }
