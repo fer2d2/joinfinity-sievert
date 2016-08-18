@@ -11,7 +11,7 @@ func init() {
 }
 
 var bootstrapCmd = &cobra.Command{
-	Use:   "bootstrap",
+	Use:   Bootstrap,
 	Short: "Bootstrap the files in the ~/sievert/ directory",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("bootstrap called")
