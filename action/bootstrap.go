@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/fer2d2/sievert/config/files"
+	"github.com/fer2d2/sievert/files"
 	"github.com/fer2d2/sievert/util"
 )
 
