@@ -1,8 +1,7 @@
 package cmd
 
 import (
-	"fmt"
-
+	"github.com/fer2d2/sievert/util"
 	"github.com/spf13/cobra"
 )
 
@@ -14,7 +13,6 @@ var provisionCmd = &cobra.Command{
 	Use:   Provision,
 	Short: "Provision the sievert environment",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println(cmd)
-		fmt.Println("provision called")
+		util.LogRunningCommand(cmd.Use, args)
 	},
 }
