@@ -2,6 +2,8 @@
 
 ## The all in one Docker stack for PHP Developers
 
+![Sievert logo](docs/img/sievert.png "Sievert")
+
 ### This project is in a development stage. Open an issue to ask any question or make a suggestion.
 
 The goal of this project is to provide an environment for PHP developers using
