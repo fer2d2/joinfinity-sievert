@@ -10,6 +10,8 @@ import (
 
 var confDir = util.GetConfigDir()
 
+// BootstrapAction creates the .siervert directory and the sievert.yml file if
+// doesn't exists
 func BootstrapAction() {
 	if util.DirExists(confDir) {
 		util.Logger.Fatal("Sievert config directory exists. Try 'sievert " +
