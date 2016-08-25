@@ -1,45 +1,17 @@
 package action
 
-import (
-	"fmt"
-	"os"
+import "github.com/fer2d2/sievert/files"
 
-	"github.com/fer2d2/sievert/files"
-	"github.com/fer2d2/sievert/util"
-)
-
-var confDir = util.GetConfigDir()
-
-// BootstrapAction creates the .siervert directory and the sievert.yml file if
-// doesn't exists
-func BootstrapAction() {
-	if util.DirExists(confDir) {
-		util.Logger.Fatal("Sievert config directory exists. Try 'sievert " +
-			"bootstrap --rebuild'")
-	}
-
-	createConfigDir()
-	createSievertYmlFile()
-	showNextStepsMessage()
+func GenerateProjectFiles() {
 }
 
-func createConfigDir() {
-	err := os.Mkdir(confDir, 0744)
-	if err != nil {
-		util.Logger.Fatal("Error creating " + confDir + ": " + err.Error())
-	} else {
-		util.LogFileCreated(confDir)
-	}
-}
-
-func createSievertYmlFile() {
+func GenerateDockerComposeFile() {
 	sievertFile := files.NewFileSievert()
-	sievertFile.WriteStubFile()
+	dockerComposeFile := files.NewDockerComposeFile()
 
-	util.LogFileCreated(sievertFile.Path)
+  sievertFile.
 }
 
-func showNextStepsMessage() {
-	fmt.Println("\nWhat to do next? Modify your sievert.yml config file and " +
-		"run 'sievert provision'")
+func GenerateNginxServers() {
+
 }

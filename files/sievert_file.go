@@ -38,7 +38,13 @@ func NewFileSievert() *FileSievert {
 
 func (fileSievert *FileSievert) InitFromYaml() {
 	sievertContent := new(SievertContent)
-	err := yaml.Unmarshal([]byte(fileSievert.Stub), sievertContent)
+
+	newContent := []byte(fileSievert.Stub)
+	if util.FileExists(fileSievert.Path) {
+		newContent = util.ReadFile(fileSievert.Path)
+	}
+
+	err := yaml.Unmarshal(newContent, sievertContent)
 	if err != nil {
 		log.Fatal(err)
 	}

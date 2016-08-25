@@ -7,19 +7,21 @@ import (
 )
 
 func init() {
-	RootCmd.AddCommand(bootstrapCmd)
+	RootCmd.AddCommand(newCmd)
 }
 
-var bootstrapCmd = &cobra.Command{
-	Use:   Bootstrap,
-	Short: "Generate the docker project files from sievert.yml configuration",
+var newCmd = &cobra.Command{
+	Use:   New,
+	Short: "Install Sievert for first time",
 	Run: func(cmd *cobra.Command, args []string) {
 		util.LogRunningCommand(cmd.Use, args)
 
 		chain := new(action.Chain)
 
 		chain.
-			// Add().
+			Add(action.RequireConfigDirNotCreated).
+			Add(action.CreateConfigDir).
+			Add(action.CreateSievertYmlFile).
 			Execute()
 	},
 }
