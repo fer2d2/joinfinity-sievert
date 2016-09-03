@@ -19,7 +19,7 @@ var bootstrapCmd = &cobra.Command{
 		chain := new(action.Chain)
 
 		chain.
-			// Add().
+			Add(action.GenerateNginxServers).
 			Execute()
 	},
 }

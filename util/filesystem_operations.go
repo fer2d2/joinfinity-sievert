@@ -8,7 +8,7 @@ import (
 )
 
 func ReadFile(fileName string) []byte {
-	configFileContent, err := ioutil.ReadFile(GetConfigDir() + fileName)
+	configFileContent, err := ioutil.ReadFile(fileName)
 	if err != nil {
 		log.Fatal(err)
 	}
