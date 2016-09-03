@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	fmt.Println(stubs.AppLogoTpl)
+	fmt.Println(stubs.Get(stubs.Logo))
 
 	if err := cmd.RootCmd.Execute(); err != nil {
 		log.Fatal(err)

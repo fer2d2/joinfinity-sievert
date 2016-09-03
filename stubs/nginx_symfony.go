@@ -1,7 +1,7 @@
 package stubs
 
 // NginxSymfonyTpl is a stub for a Nginx virtual host for Symfony2 projects
-var NginxSymfonyTpl = `
+var nginxSymfonyTpl = `
 server {
     listen {{.Port}};
     listen {{.SslPort}} ssl http2;

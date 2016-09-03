@@ -1,7 +1,7 @@
 package stubs
 
 // NginxLaravelTpl is a stub for a Nginx virtual host for Laravel projects
-var NginxLaravelTpl = `
+var nginxLaravelTpl = `
 server {
     listen {{.Port}};
     listen {{.SslPort}} ssl http2;

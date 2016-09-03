@@ -26,7 +26,7 @@ type FileSievert struct {
 
 func NewFileSievert() *FileSievert {
 	filePath := util.GetConfigDir() + "/" + "sievert.yml"
-	fileStub := stubs.SievertYmlTpl
+	fileStub := stubs.Get(stubs.SievertYml)
 
 	fileSievert := new(FileSievert)
 	fileSievert.FileCommon = FileCommon{filePath, fileStub}

@@ -1,7 +1,7 @@
 package stubs
 
 // SievertYmlTpl is a stub for the sievert.yml file
-var SievertYmlTpl = `
+var sievertYmlTpl = `
 ip: "127.0.0.1"
 services:
   - mysql

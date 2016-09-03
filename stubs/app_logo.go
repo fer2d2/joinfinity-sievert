@@ -1,7 +1,7 @@
 package stubs
 
 // AppLogoTpl is the application logo generated in ascii art
-var AppLogoTpl = `
+var appLogoTpl = `
       _                     _
      (_)                   | |
   ___ _  _____   _____ _ __| |_

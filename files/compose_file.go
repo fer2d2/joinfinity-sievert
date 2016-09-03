@@ -17,7 +17,7 @@ type FileDockerCompose struct {
 
 func NewFileDockerCompose() *FileDockerCompose {
 	filePath := util.GetConfigDir() + "/" + "docker-compose.yml"
-	fileStub := stubs.DockerComposeTpl
+	fileStub := stubs.Get(stubs.ComposeYml)
 
 	fileDockerCompose := new(FileDockerCompose)
 	fileDockerCompose.FileCommon = FileCommon{filePath, fileStub}
