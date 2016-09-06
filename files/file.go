@@ -1,38 +1,33 @@
 package files
 
 import (
-	"log"
-	"os"
+	"github.com/fer2d2/sievert/files/filesystem"
+	"github.com/fer2d2/sievert/stubs"
 )
 
-// FileCommon represents a configuration file to be loaded or written into
-// disk
+// FileCommon represents a configuration file to be loaded or written into disk
 type FileCommon struct {
-	Path string
-	Stub string
+	Label string
+	Path  string
 }
 
-type ConfigFile interface {
-	FileExists() bool
-	WriteStubFile()
+// Exists checks if the specified files exists in the filesystem
+func (fileCommon *FileCommon) Exists() bool {
+	filesystem.FileExists(fileCommon.Path)
 }
 
-type YamlFile interface {
-	InitFromYaml()
+// Stub returns the stub for the specified file type through the Label
+func (fileCommon *FileCommon) Stub() (string, error) {
+	return stubs.Get(fileCommon.Label)
 }
 
-func (fileCommon *FileCommon) WriteStubFile() {
-	file, err := os.Create(fileCommon.Path)
-	if err != nil {
-		log.Fatal(err)
+func (fileCommon *FileCommon) GetFileContentOrStub() ([]byte, error) {
+
+	contentBytes, err := []byte(fileSievert.Stub())
+
+	if fileCommon.Exists() {
+		contentBytes, err = filesystem.ReadFile(fileSievert.Path)
 	}
 
-	defer file.Close()
-
-	_, err = file.WriteString(fileCommon.Stub)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	file.Sync()
+	return contentBytes, err
 }

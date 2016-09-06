@@ -1,8 +1,8 @@
 package stubs
 
-import "github.com/fer2d2/sievert/util"
+import "errors"
 
-// Exported constatns to retrieve the correct stub from the factory
+// Exported constants to retrieve the correct stub from the factory
 const (
 	ConfPrefix = "conf."
 
@@ -38,28 +38,28 @@ func init() {
 	register(NginxLaravel, nginxLaravelTpl)
 	register(NginxSymfony, nginxSymfonyTpl)
 
-	// Register()
-	// Register()
-
 }
 
 var stubs = make(map[string]string)
 
-func register(name string, content string) {
+func register(name string, content string) error {
 	_, registered := stubs[name]
 	if registered {
-		util.Logger.Fatalf("Stub already registered for key '%s'", name)
+		return errors.New("stubs: template already registered for key " + name)
 	}
 
 	stubs[name] = content
+
+	return nil
 }
 
 // Get returns the stub for a specified registered text template
-func Get(name string) string {
+func Get(name string) (string, error) {
 	content, registered := stubs[name]
+
 	if !registered {
-		util.Logger.Fatalf("Stub not found for key '%s'", name)
+		return "", errors.New("stubs: template not found for key " + name)
 	}
 
-	return content
+	return content, nil
 }
