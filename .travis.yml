@@ -1,0 +1,17 @@
+language: go
+
+branches:
+  only:
+    - master
+
+matrix:
+  include:
+    - go: 1.5
+    - go: 1.6
+    - go: 1.7
+
+install:
+- go get ./...
+
+script:
+- go test -v ./...
