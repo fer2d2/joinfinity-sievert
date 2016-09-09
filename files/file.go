@@ -17,16 +17,26 @@ func (fileCommon *FileCommon) Exists() bool {
 }
 
 // Stub returns the stub for the specified file type through the Label
-func (fileCommon *FileCommon) Stub() (string, error) {
-	return stubs.Get(fileCommon.Label)
+func (fileCommon *FileCommon) Stub() ([]byte, error) {
+	stub := stubs.Get(fileCommon.Label)
+	return []byte(stub)
 }
 
-func (fileCommon *FileCommon) GetFileContentOrStub() ([]byte, error) {
-
-	contentBytes, err := []byte(fileSievert.Stub())
-
+// FileContent returns the file content if it exists
+func (fileCommon *FileCommon) FileContent() ([]byte, error) {
 	if fileCommon.Exists() {
 		contentBytes, err = filesystem.ReadFile(fileSievert.Path)
+	}
+
+	return contentBytes, err
+}
+
+// FileContentOrStub returns the file content if it exists or its stub otherwise
+func (fileCommon *FileCommon) FileContentOrStub() ([]byte, error) {
+	if fileCommon.Exists() {
+		contentBytes, err = fileCommon.FileContent()
+	} else {
+		contentBytes, err = fileCommon.Stub()
 	}
 
 	return contentBytes, err
