@@ -3,10 +3,10 @@ package logger
 import logrus "github.com/Sirupsen/logrus"
 
 // Log is an instance of the logrus logger to be used across the application
-var Log = log.New()
+var Log = logrus.New()
 
 func init() {
-	Log.Level = log.DebugLevel
+	Log.Level = logrus.DebugLevel
 }
 
 // FileCreated logs the successfull creation of a file
