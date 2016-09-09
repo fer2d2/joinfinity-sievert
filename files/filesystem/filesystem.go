@@ -3,7 +3,6 @@ package filesystem
 import (
 	"io/ioutil"
 	"os"
-	"os/user"
 )
 
 // ReadFile reads the content of a given file
@@ -55,28 +54,4 @@ func DirExists(path string) bool {
 	}
 
 	return true
-}
-
-// func GetContentFromFileOrDefault(filePath string, defaultValue string) []byte {
-// 	byteContent := []byte(defaultValue)
-// 	if FileExists(filePath) {
-// 		byteContent = ReadFile(filePath)
-// 	}
-//
-// 	return byteContent
-// }
-
-func GetConfigDir() (string, error) {
-	confDir := os.Getenv("SIEVERT_CONF")
-
-	if confDir == "" {
-		usr, err := user.Current()
-		if err != nil {
-			return "", err
-		}
-
-		confDir = usr.HomeDir + "/.sievert"
-	}
-
-	return confDir, nil
 }
