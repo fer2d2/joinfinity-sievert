@@ -33,13 +33,13 @@ func TestActionChainExecute(t *testing.T) {
 	chain := new(Chain)
 
 	counter := 0
-	functionA := func() {
+	incrementCounter := func() {
 		counter++
 	}
 
 	chain.
-		Add(functionA).
-		Add(functionA).
+		Add(incrementCounter).
+		Add(incrementCounter).
 		Execute()
 
 	if counter != 2 {

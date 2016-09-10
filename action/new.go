@@ -1,31 +1,32 @@
 package action
 
-// import (
-// 	"os"
-//
-// 	"github.com/fer2d2/sievert/files"
-// 	"github.com/fer2d2/sievert/util"
-// )
-//
-// func RequireConfigDirNotCreated() {
-// 	if util.DirExists(confDir) {
-// 		util.Logger.Fatal("Sievert config directory exists. Check your " +
-// 			"$SIEVERT_CONF value.")
-// 	}
-// }
-//
-// func CreateConfigDir() {
-// 	err := os.Mkdir(confDir, 0744)
-// 	if err != nil {
-// 		util.Logger.Fatal("Error creating " + confDir + ": " + err.Error())
-// 	} else {
-// 		util.LogFileCreated(confDir)
-// 	}
-// }
-//
-// func CreateSievertYmlFile() {
-// 	sievertFile := files.NewFileSievert()
-// 	sievertFile.WriteStubFile()
-//
-// 	util.LogFileCreated(sievertFile.Path)
-// }
+import (
+	"fmt"
+	"os"
+
+	"github.com/fer2d2/sievert/config"
+	"github.com/fer2d2/sievert/files"
+	"github.com/fer2d2/sievert/logger"
+)
+
+func CreateConfigDir() {
+	confDir, err := config.ProjectRoot()
+
+	if err != nil {
+		logger.Log.Fatal(err)
+	}
+
+	err = os.Mkdir(confDir, 0744)
+	if err != nil {
+		logger.Log.Fatal("Error creating " + confDir + ": " + err.Error())
+	} else {
+		logger.FileCreated(confDir)
+	}
+}
+
+func CreateSievertYmlFile() {
+	sievertFile, _ := files.NewFileSievert()
+	fmt.Printf("%v", sievertFile.Content)
+	sievertFile.Write()
+	// util.LogFileCreated(sievertFile.Path)
+}

@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/fer2d2/sievert/action"
 	"github.com/fer2d2/sievert/logger"
 	"github.com/spf13/cobra"
 )
@@ -15,13 +16,11 @@ var newCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		logger.CommandCall(cmd.Use, args)
 
-		//
-		// chain := new(action.Chain)
-		//
-		// chain.
-		// 	Add(action.RequireConfigDirNotCreated).
-		// 	Add(action.CreateConfigDir).
-		// 	Add(action.CreateSievertYmlFile).
-		// 	Execute()
+		chain := new(action.Chain)
+
+		chain.
+			Add(action.CreateConfigDir).
+			Add(action.CreateSievertYmlFile).
+			Execute()
 	},
 }
